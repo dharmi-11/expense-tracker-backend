@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: expense-tracker-backend
+    runtime: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm run prisma:generate && npm run prisma:migrate:deploy && npm run prisma:seed && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: PORT
+        value: 4000
+      - key: DEMO_EMAIL
+        value: demo@expensetracker.pro
+      - key: DEMO_PASSWORD
+        value: Passw0rd!2026
